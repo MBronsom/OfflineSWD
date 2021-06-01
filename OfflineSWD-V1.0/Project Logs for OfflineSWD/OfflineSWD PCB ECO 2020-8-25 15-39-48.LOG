@@ -1,0 +1,124 @@
+Change Component Comment : Designator= Old Comment= New Comment=1.5K次 (1501) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=1K次 (1001) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=1K次 (1001) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=1uF (105) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=1uF (105) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=1uF (105) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=1uF (105) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=1uF (105) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=2.2uF (225) 10% 16V
+Change Component Comment : Designator= Old Comment= New Comment=2M次 (2004) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=4.7uF (475) 10% 16V
+Change Component Comment : Designator= Old Comment= New Comment=10K次 (1002) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=10K次 (1002) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=10K次 (1002) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=16MHZ
+Change Component Comment : Designator= Old Comment= New Comment=22pF (220) 5% 50V
+Change Component Comment : Designator= Old Comment= New Comment=22pF (220) 5% 50V
+Change Component Comment : Designator= Old Comment= New Comment=22pF (220) 5% 50V
+Change Component Comment : Designator= Old Comment= New Comment=22pF (220) 5% 50V
+Change Component Comment : Designator= Old Comment= New Comment=22次 (22R0) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=22次 (22R0) ㊣1%
+Change Component Comment : Designator= Old Comment= New Comment=100nF (104) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=100nF (104) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=100nF (104) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=100nF (104) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=100nF (104) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=100nF (104) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=100nF (104) 10% 50V
+Change Component Comment : Designator= Old Comment= New Comment=500mA
+Change Component Comment : Designator= Old Comment= New Comment=KEY
+Change Component Comment : Designator= Old Comment= New Comment=KEY
+Change Component Comment : Designator= Old Comment= New Comment=MHDR1X4
+Change Component Comment : Designator= Old Comment= New Comment=QG-2832TLBFG02
+Change Component Comment : Designator= Old Comment= New Comment=STM32F103RET6
+Change Component Comment : Designator= Old Comment= New Comment=USB
+Change Component Comment : Designator= Old Comment= New Comment=W25Q64
+Change Component Comment : Designator= Old Comment= New Comment=XC6206P332MR
+Change Component Comment : Designator= Old Comment= New Comment=XC6206P332MR
+Change Component Comment : Designator= Old Comment= New Comment=XH2.54*4
+Change Component Comment : Designator= Old Comment= New Comment=啞腑 0603
+Change Component Comment : Designator= Old Comment= New Comment=啞腑 0603
+Change Component Designator: OldDesignator= NewDesignator=C1
+Change Component Designator: OldDesignator= NewDesignator=C2
+Change Component Designator: OldDesignator= NewDesignator=C3
+Change Component Designator: OldDesignator= NewDesignator=C4
+Change Component Designator: OldDesignator= NewDesignator=C5
+Change Component Designator: OldDesignator= NewDesignator=C6
+Change Component Designator: OldDesignator= NewDesignator=C7
+Change Component Designator: OldDesignator= NewDesignator=C8
+Change Component Designator: OldDesignator= NewDesignator=C9
+Change Component Designator: OldDesignator= NewDesignator=C10
+Change Component Designator: OldDesignator= NewDesignator=C11
+Change Component Designator: OldDesignator= NewDesignator=C12
+Change Component Designator: OldDesignator= NewDesignator=C13
+Change Component Designator: OldDesignator= NewDesignator=C14
+Change Component Designator: OldDesignator= NewDesignator=C15
+Change Component Designator: OldDesignator= NewDesignator=C16
+Change Component Designator: OldDesignator= NewDesignator=C17
+Change Component Designator: OldDesignator= NewDesignator=C19
+Change Component Designator: OldDesignator= NewDesignator=D2
+Change Component Designator: OldDesignator= NewDesignator=D3
+Change Component Designator: OldDesignator= NewDesignator=F1
+Change Component Designator: OldDesignator= NewDesignator=O1
+Change Component Designator: OldDesignator= NewDesignator=OLED1
+Change Component Designator: OldDesignator= NewDesignator=P1
+Change Component Designator: OldDesignator= NewDesignator=P2
+Change Component Designator: OldDesignator= NewDesignator=R1
+Change Component Designator: OldDesignator= NewDesignator=R2
+Change Component Designator: OldDesignator= NewDesignator=R3
+Change Component Designator: OldDesignator= NewDesignator=R4
+Change Component Designator: OldDesignator= NewDesignator=R5
+Change Component Designator: OldDesignator= NewDesignator=R6
+Change Component Designator: OldDesignator= NewDesignator=R7
+Change Component Designator: OldDesignator= NewDesignator=R8
+Change Component Designator: OldDesignator= NewDesignator=R9
+Change Component Designator: OldDesignator= NewDesignator=S1
+Change Component Designator: OldDesignator= NewDesignator=S2
+Change Component Designator: OldDesignator= NewDesignator=SWD1
+Change Component Designator: OldDesignator= NewDesignator=U1
+Change Component Designator: OldDesignator= NewDesignator=U2
+Change Component Designator: OldDesignator= NewDesignator=VR1
+Change Component Designator: OldDesignator= NewDesignator=VR2
+Added Member To Class: ClassName=OfflineSWD Member=Component C1 22pF (220) 5% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C2 22pF (220) 5% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C3 22pF (220) 5% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C4 22pF (220) 5% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C5 100nF (104) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C6 100nF (104) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C7 100nF (104) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C8 100nF (104) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C9 100nF (104) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C10 100nF (104) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C11 1uF (105) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C12 1uF (105) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C13 1uF (105) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C14 4.7uF (475) 10% 16V
+Added Member To Class: ClassName=OfflineSWD Member=Component C15 100nF (104) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C16 2.2uF (225) 10% 16V
+Added Member To Class: ClassName=OfflineSWD Member=Component C17 1uF (105) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component C19 1uF (105) 10% 50V
+Added Member To Class: ClassName=OfflineSWD Member=Component D2 啞腑 0603
+Added Member To Class: ClassName=OfflineSWD Member=Component D3 啞腑 0603
+Added Member To Class: ClassName=OfflineSWD Member=Component F1 500mA
+Added Member To Class: ClassName=OfflineSWD Member=Component O1 16MHZ
+Added Member To Class: ClassName=OfflineSWD Member=Component OLED1 QG-2832TLBFG02
+Added Member To Class: ClassName=OfflineSWD Member=Component P1 MHDR1X4
+Added Member To Class: ClassName=OfflineSWD Member=Component P2 USB
+Added Member To Class: ClassName=OfflineSWD Member=Component R1 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component R2 1.5K次 (1501) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component R3 22次 (22R0) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component R4 22次 (22R0) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component R5 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component R6 10K次 (1002) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component R7 1K次 (1001) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component R8 1K次 (1001) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component R9 2M次 (2004) ㊣1%
+Added Member To Class: ClassName=OfflineSWD Member=Component S1 KEY
+Added Member To Class: ClassName=OfflineSWD Member=Component S2 KEY
+Added Member To Class: ClassName=OfflineSWD Member=Component SWD1 XH2.54*4
+Added Member To Class: ClassName=OfflineSWD Member=Component U1 STM32F103RET6
+Added Member To Class: ClassName=OfflineSWD Member=Component U2 W25Q64
+Added Member To Class: ClassName=OfflineSWD Member=Component VR1 XC6206P332MR
+Added Member To Class: ClassName=OfflineSWD Member=Component VR2 XC6206P332MR
+Added Room: Name=OfflineSWD
