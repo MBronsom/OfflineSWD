@@ -1,7 +1,0 @@
-Removed Pin From Net: NetName=KEY2 Pin=U1-55
-Added Pin To Net: NetName=KEY2 Pin=U1-30
-Added Member To Class: ClassName=OfflineSWD Member=Component C13 1uF (105) 10% 50V
-Added Member To Class: ClassName=OfflineSWD Member=Component C15 1uF (105) 10% 50V
-Added Member To Class: ClassName=OfflineSWD Member=Component D2 °×µÆ 0603
-Added Member To Class: ClassName=OfflineSWD Member=Component S2 KEY
-Added Member To Class: ClassName=OfflineSWD Member=Component VR1 XC6206P332MR

@@ -1,7 +1,0 @@
-Removed Pin From Net: NetName=LED Pin=U1-2
-Removed Pin From Net: NetName=KEY1 Pin=U1-14
-Removed Pin From Net: NetName=KEY2 Pin=U1-15
-Added Pin To Net: NetName=KEY1 Pin=U1-8
-Added Pin To Net: NetName=KEY2 Pin=U1-55
-Added Pin To Net: NetName=LED Pin=U1-56
-Added Member To Class: ClassName=OfflineSWD Member=Component VR1 XC6206P332MR
