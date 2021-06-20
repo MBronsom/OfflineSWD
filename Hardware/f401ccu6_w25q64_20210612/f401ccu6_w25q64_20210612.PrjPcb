@@ -44,7 +44,7 @@ AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=-1
+AnnotateOrder=0
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -55,6 +55,23 @@ GenerateClassCluster=0
 DocumentUniqueId=TANNKFIG
 
 [Document2]
+DocumentPath=5PinHeader.PcbLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=INBFLDKJ
+
+[Document3]
 DocumentPath=f401ccu6_w25q64_20210612.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -70,6 +87,10 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=IOOSMMKS
+
+[GeneratedDocument1]
+DocumentPath=Project Outputs for f401ccu6_w25q64_20210612\Design Rule Check - f401ccu6_w25q64_20210612.html
+DItemRevisionGUID=
 
 [Configuration1]
 Name=Sources
