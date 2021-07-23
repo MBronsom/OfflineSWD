@@ -16,6 +16,8 @@ u32 i = 0;
 u32 select = 0;
 u8 breakDebug = 0;
 u8 debugMode = 0;
+char* debugBaud[9] = {"4800","9600","14400","19200","38400","57600","115200","256000","921600"};
+u8 debugSelect = 1; //默认选择波特率为9600
 uint16_t bytesread;
 u8 Logo[] = "BRONSON";
 
@@ -121,7 +123,8 @@ void Draw_Main(){
       if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
       {
 				f_readdir(&DirInfo, &FileInfo);
-				OLED_ShowString(45,1,FileInfo.fname,1,1);
+				if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+				else OLED_ShowString(45,1,"NULL",1,1);
 			}
 	}		
 	OLED_ShowString(45,-1,"SELECT HEX",1,0);
@@ -136,22 +139,26 @@ void Draw_Main(){
 			if(select == 4) select = 0;
 			switch(select){
 				case 0:
-				  OLED_ShowString(45,1,FileInfo.fname,1,1);
+				  if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+				  else OLED_ShowString(45,1,"NULL",1,1);
 					OLED_ShowString(110,1,">>",1,1);
 				  OLED_ShowString(92,2,"FLASH",1,1);
 				  break;
 				case 1:
-				  OLED_ShowString(45,1,FileInfo.fname,0,1);
+				  if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,0,1);
+				  else OLED_ShowString(45,1,"NULL",0,1);
 					OLED_ShowString(110,1,">>",1,1);
 				  OLED_ShowString(92,2,"FLASH",1,1);
 				  break;
 				case 2:
-				  OLED_ShowString(45,1,FileInfo.fname,1,1);
+				  if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+				  else OLED_ShowString(45,1,"NULL",1,1);
 					OLED_ShowString(110,1,">>",0,1);
 				  OLED_ShowString(92,2,"FLASH",1,1);
 				  break;
 				case 3:
-				  OLED_ShowString(45,1,FileInfo.fname,1,1);
+				  if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+				  else OLED_ShowString(45,1,"NULL",1,1);
 					OLED_ShowString(110,1,">>",1,1);
 				  OLED_ShowString(92,2,"FLASH",0,1);
 				  break;
@@ -160,18 +167,20 @@ void Draw_Main(){
 		if(Scan_Key() == 2){
 			switch(select){
 				case 1: //选择文件
-					f_readdir(&DirInfo, &FileInfo);
-				  OLED_ShowString(45,1,"          ",1, 1);
-				  OLED_ShowString(45,1,FileInfo.fname,0,1);
-				  OLED_ShowString(110,1,">>",1,1);
-				  if(!FileInfo.fname[0]){
-						f_opendir(&DirInfo,(const TCHAR*)"0:");
+					if(strlen(FileInfo.fname) != 0){
 						f_readdir(&DirInfo, &FileInfo);
-						f_readdir(&DirInfo, &FileInfo);
-						OLED_ShowString(45,1,"          ",1,1);
-				    OLED_ShowString(45,1,FileInfo.fname,0,1);
-				    OLED_ShowString(110,1,">>",1,1);
-					}
+						OLED_ShowString(45,1,"          ",1, 1);
+						OLED_ShowString(45,1,FileInfo.fname,0,1);
+						OLED_ShowString(110,1,">>",1,1);
+						if(!FileInfo.fname[0]){
+							f_opendir(&DirInfo,(const TCHAR*)"0:");
+							f_readdir(&DirInfo, &FileInfo);
+							f_readdir(&DirInfo, &FileInfo);
+							OLED_ShowString(45,1,"          ",1,1);
+							OLED_ShowString(45,1,FileInfo.fname,0,1);
+							OLED_ShowString(110,1,">>",1,1);
+						}
+				  }
 					break;
 				case 2: //进入调试模式
 					select = 0;
@@ -179,23 +188,36 @@ void Draw_Main(){
 				  OLED_DrawBMP(0,0,32,32,DebugLogo);
 				  OLED_ShowString(45,-1,"DEBUG MODE",1,0);
 					OLED_ShowString(45,0,"----------",1,0);
-				  OLED_ShowString(45,2,"<<",1,1);
+					OLED_ShowString(45,1,debugBaud[debugSelect],1,1);
+				  OLED_ShowString(110,1,">>",1,1);
 				  OLED_ShowString(92,2,"ENTER",1,1);
 				  while(1){
 						if(Scan_Key() == 1){
 							select ++;
-							if(select == 3) select = 0;
+							if(select == 4) select = 0;
 							switch(select){
 								case 0:
-									OLED_ShowString(45,2,"<<",1,1);
+									OLED_ShowString(45,1,"      ",1,1);
+									OLED_ShowString(45,1,debugBaud[debugSelect],1,1);
+									OLED_ShowString(110,1,">>",1,1);
 								  OLED_ShowString(92,2,"ENTER",1,1);
 									break;
 								case 1:
-									OLED_ShowString(45,2,"<<",0,1);
+									OLED_ShowString(45,1,"      ",1,1);
+									OLED_ShowString(45,1,debugBaud[debugSelect],0,1);
+									OLED_ShowString(110,1,">>",1,1);
 								  OLED_ShowString(92,2,"ENTER",1,1);
 									break;
 								case 2:
-									OLED_ShowString(45,2,"<<",1,1);
+									OLED_ShowString(45,1,"      ",1,1);
+									OLED_ShowString(45,1,debugBaud[debugSelect],1,1);
+									OLED_ShowString(110,1,">>",0,1);
+								  OLED_ShowString(92,2,"ENTER",1,1);
+									break;
+								case 3:
+									OLED_ShowString(45,1,"      ",1,1);
+									OLED_ShowString(45,1,debugBaud[debugSelect],1,1);
+									OLED_ShowString(110,1,">>",1,1);
 								  OLED_ShowString(92,2,"ENTER",0,1);
 									break;
 							}
@@ -204,7 +226,42 @@ void Draw_Main(){
 						
 						if(Scan_Key() == 2){
 							switch(select){
-									case 1: //返回上一页面
+								  case 1: //修改调试模式波特率
+										debugSelect++;
+									  if(debugSelect == 9) debugSelect = 0;
+										OLED_ShowString(45,1,"      ",0,1);
+										OLED_ShowString(45,1,debugBaud[debugSelect],0,1);
+									  switch(debugSelect){
+											case 0:
+											  usart_config(4800);
+												break;
+											case 1:
+												usart_config(9600);
+												break;
+											case 2:
+												usart_config(14400);
+												break;
+											case 3:
+												usart_config(19200);
+												break;
+											case 4:
+												usart_config(38400);
+												break;
+											case 5:
+												usart_config(57600);
+												break;
+											case 6:
+												usart_config(115200);
+												break;
+											case 7:
+												usart_config(256000);
+												break;
+											case 8:
+												usart_config(921600);
+												break;
+										}
+										break;
+									case 2: //进入下一页面
 										OLED_Clear();
 										OLED_DrawBMP(0,0,33,33,FlashLogo);
 										if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* 打开文件夹目录成功，目录信息已经在dir结构体中保存 */
@@ -212,7 +269,8 @@ void Draw_Main(){
 											if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
 											{
 												 f_readdir(&DirInfo, &FileInfo);
-												 OLED_ShowString(45,1,FileInfo.fname,1,1);
+												 if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+				                 else OLED_ShowString(45,1,"NULL",1,1);
 											}
 										}		
 										OLED_ShowString(45,-1,"SELECT HEX",1,0);
@@ -222,7 +280,7 @@ void Draw_Main(){
 										select = 0;
 										breakDebug = 1;
 										break;
-									case 2: //确认进入调试模式
+									case 3: //确认进入调试模式
 										select = 0;
 									  debugMode = 1;
 										OLED_Clear();
@@ -251,7 +309,8 @@ void Draw_Main(){
 										OLED_DrawBMP(0,0,32,32,DebugLogo);
 										OLED_ShowString(45,-1,"DEBUG MODE",1,0);
 										OLED_ShowString(45,0,"----------",1,0);
-										OLED_ShowString(45,2,"<<",1,1);
+										OLED_ShowString(45,1,debugBaud[debugSelect],1,1);
+										OLED_ShowString(110,1,">>",1,1);
 										OLED_ShowString(92,2,"ENTER",1,1);
 										break;
 								}
@@ -297,7 +356,8 @@ void Draw_Main(){
                   if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
                   {
 				             f_readdir(&DirInfo, &FileInfo);
-				             OLED_ShowString(45,1,FileInfo.fname,1,1);
+				             if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+				             else OLED_ShowString(45,1,"NULL",1,1);
 			            }
 	              }		
 	              OLED_ShowString(45,-1,"SELECT HEX",1,0);
@@ -348,7 +408,8 @@ void Draw_Main(){
                   if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
                   {
 				             f_readdir(&DirInfo, &FileInfo);
-				             OLED_ShowString(45,1,FileInfo.fname,1,1);
+				             if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+				             else OLED_ShowString(45,1,"NULL",1,1);
 			            }
 	              }		
 	              OLED_ShowString(45,-1,"SELECT HEX",1,0);
@@ -359,7 +420,7 @@ void Draw_Main(){
 		          }
 					  }
 					}
-				  else{ //BIN文件烧写模式
+				  if(strstr(FileInfo.fname,"BIN")) { //BIN文件烧写模式
 						OLED_Clear();
 		        OLED_DrawBMP(0,0,33,33,FlashLogo);
 						if(f_open(&fnew, (const TCHAR*)FileInfo.fname,FA_READ ) == FR_OK){
@@ -401,7 +462,8 @@ void Draw_Main(){
                 if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
                 {
 				           f_readdir(&DirInfo, &FileInfo);
-				           OLED_ShowString(45,1,FileInfo.fname,1,1);
+				           if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+				           else OLED_ShowString(45,1,"NULL",1,1);
 			          }
 	            }		
 	            OLED_ShowString(45,-1,"SELECT HEX",1,0);

@@ -91,11 +91,26 @@ void USART1_IRQHandler(void)
 } 
 #endif
 
+//配置串口1波特率
+void usart_config(u32 baud)
+{
+	USART_InitTypeDef USART_InitStructure;
+	USART_Cmd(USART1, DISABLE);
+	USART_InitStructure.USART_BaudRate =baud;
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+	USART_InitStructure.USART_StopBits = USART_StopBits_1;
+	USART_InitStructure.USART_Parity = USART_Parity_No;
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+	USART_Init(USART1, &USART_InitStructure);
+	USART_Cmd(USART1, ENABLE);
+}
+
 //初始化IO 串口1
 //bound:波特率 
 void uart_init(u32 baud)
 {
-  GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitTypeDef GPIO_InitStructure;
     USART_InitTypeDef USART_InitStructure;
     NVIC_InitTypeDef NVIC_InitStructure;
     DMA_InitTypeDef DMA_InitStructure;
