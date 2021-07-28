@@ -18,15 +18,13 @@ char HexFormatUncode(unsigned char *File)
     u8 a,b = 0;
 	  char buff[64] = "" ;
 
-    unsigned char length = 0;
     unsigned short offset = 0;  //0~65535
     unsigned char type = 0;
-    unsigned char checksum = 0;
     unsigned char i = 0;
 	  f_open(&fp_hex, (const TCHAR*)File,FA_READ);
 	  f_open(&fp_bin, (const TCHAR*)"write.bin",FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
 		u8 WaitTips[] = "...";
-		OLED_ShowString(45,2,"INVER",1,1);
+		OLED_ShowString(45,2,(u8*)"INVER",1,1);
     while(f_gets(buff,64,&fp_hex)!=NULL){
 		a++;
 		if(a==100){
@@ -34,7 +32,7 @@ char HexFormatUncode(unsigned char *File)
 			b++;
 			if(b>3){ 
 				b=0;
-				OLED_ShowString(75,2,"     ",1,1);
+				OLED_ShowString(75,2,(u8*)"     ",1,1);
 			}
 			a=0;
 		}
@@ -42,7 +40,6 @@ char HexFormatUncode(unsigned char *File)
     if(buff[0] != ':') return 0;
     else
     {
-        length=Char2toByte(&buff[1]);
         offset=Char2toByte(&buff[3])*256+Char2toByte(&buff[5]);
         type=Char2toByte(&buff[7]);
         if(type==0)
@@ -54,7 +51,7 @@ char HexFormatUncode(unsigned char *File)
 
     }
 	}
-	OLED_ShowString(45,2,"          ",1,1);
+	OLED_ShowString(45,2,(u8*)"          ",1,1);
 	f_close(&fp_bin);
 	f_close(&fp_hex);
 	return 1;

@@ -23,6 +23,8 @@
 ".\objects\hex2bin.o"
 ".\objects\diskio.o"
 ".\objects\ff.o"
+".\objects\ccsbcs.o"
+".\objects\syscall.o"
 ".\objects\fsmc_nand.o"
 ".\objects\hw_config.o"
 ".\objects\mass_mal.o"
@@ -65,7 +67,7 @@
 ".\objects\stm32f10x_opt.o"
 ".\objects\oled.o"
 ".\objects\w25qxx.o"
---strict --scatter ".\Objects\STM32-OffineSWD.sct"
+--library_type=microlib --strict --scatter ".\Objects\STM32-OffineSWD.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\STM32-OffineSWD.map" -o .\Objects\STM32-OffineSWD.axf

@@ -65,6 +65,13 @@ unsigned char DebugLogo[]={
 /***********************变量定义************************/
 uint32_t Flash_Page_Size = 1024;
 
+enum{
+	MAIN_WINDOW,
+	DEBUG_WINDOW,
+	DEBUGING_WINDOW,
+	HEX_WINDOW,
+	BIN_WINDOW,
+}MENU_TYPE;
 /***********************函数定义************************/
 void Init_device(void);
 void Draw_Logo(void);

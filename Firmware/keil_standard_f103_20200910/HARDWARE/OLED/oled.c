@@ -144,7 +144,7 @@ void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 size,u8 mode)
 	}
 } 
 //ÏÔÊ¾Ò»¸ö×Ö·ûºÅ´®
-void OLED_ShowString(u8 x,u8 y,u8 *chr,u8 mode,u8 space)
+void OLED_ShowString(s8 x,s8 y,u8 *chr,u8 mode,u8 space)
 {
 	unsigned char j=0;
 	while (chr[j]!='\0')
