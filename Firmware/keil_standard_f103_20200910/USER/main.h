@@ -79,6 +79,7 @@ void Draw_Menu(void);
 void Draw_Main(void);
 u8 FLASH_SWD(u8 *File);
 u8 FLASH_SWD_HEX(u8 *File);
+u8 FLASH_HEX_SWD(u8 *File);
 u8 Scan_Key(void);
 
 #endif /*_MAIN_H_*/

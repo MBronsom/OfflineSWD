@@ -1,6 +1,6 @@
 Dependencies for Project 'STM32-OffineSWD', Target 'STM32-OfflineSWD': (DO NOT MODIFY !)
-F (..\USER\main.c)(0x6100E794)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\HARDWARE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\SYSTEM\spi -I ..\HARDWARE\W25Qxx -I ..\HARDWARE\ff9\src -I ..\HARDWARE\Mass_Storage\inc -I ..\HARDWARE\STM32_USB-FS-Device_Driver\inc -I ..\HARDWARE\Offline_SWD -I ..\HARDWARE\DAP -I ..\HARDWARE\SWD -I ..\HARDWARE\algo -I ..\HARDWARE\OLED -I ..\HARDWARE\another -I ..\HARDWARE\DAP_USB\inc -I ..\HARDWARE\DAP_UART -I ..\CMSIS\CoreSupport -I ..\CMSIS\5.6.0\CMSIS\Include -I ..\CMSIS\5.6.0\CMSIS\Driver\Include -I ..\RL\USB\INC-I.\RTE\_STM32-OfflineSWD-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DBLUEPILL -DSWO_PB7 -DSWD_REMAP-o .\objects\main.o --depend .\objects\main.d)
-I (..\USER\main.h)(0x6100412F)
+F (..\USER\main.c)(0x612B9E51)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\HARDWARE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\SYSTEM\spi -I ..\HARDWARE\W25Qxx -I ..\HARDWARE\ff9\src -I ..\HARDWARE\Mass_Storage\inc -I ..\HARDWARE\STM32_USB-FS-Device_Driver\inc -I ..\HARDWARE\Offline_SWD -I ..\HARDWARE\DAP -I ..\HARDWARE\SWD -I ..\HARDWARE\algo -I ..\HARDWARE\OLED -I ..\HARDWARE\another -I ..\HARDWARE\DAP_USB\inc -I ..\HARDWARE\DAP_UART -I ..\CMSIS\CoreSupport -I ..\CMSIS\5.6.0\CMSIS\Include -I ..\CMSIS\5.6.0\CMSIS\Driver\Include -I ..\RL\USB\INC-I.\RTE\_STM32-OfflineSWD-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DBLUEPILL -DSWO_PB7 -DSWD_REMAP-o .\objects\main.o --depend .\objects\main.d)
+I (..\USER\main.h)(0x61225E2F)
 I (..\SYSTEM\sys\sys.h)(0x60FEF2C9)
 I (..\CORE\stm32f10x.h)(0x60FEF2C8)
 I (..\CMSIS\CoreSupport\core_cm3.h)(0x60FEF2C8)
@@ -58,7 +58,7 @@ I (..\HARDWARE\SWD\SWD_flash.h)(0x60FEF2C8)
 I (..\HARDWARE\SWD\error.h)(0x60FEF2C8)
 I (..\HARDWARE\SWD\SWD_opt.h)(0x60FEF2C8)
 I (..\HARDWARE\another\key.h)(0x60FEF2C8)
-I (..\HARDWARE\another\hex2bin.h)(0x6100E5CF)
+I (..\HARDWARE\another\hex2bin.h)(0x612A4E3F)
 I (..\HARDWARE\ff9\src\ff.h)(0x60FEF2C8)
 I (..\HARDWARE\ff9\src\integer.h)(0x60FEF2C8)
 I (..\HARDWARE\ff9\src\ffconf.h)(0x610048A4)
@@ -680,8 +680,8 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x60FEF2C9)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x60FEF2C9)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x60FEF2C9)
 I (..\SYSTEM\sys\sys.h)(0x60FEF2C9)
-F (..\HARDWARE\another\hex2bin.c)(0x6100E5EA)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\HARDWARE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\SYSTEM\spi -I ..\HARDWARE\W25Qxx -I ..\HARDWARE\ff9\src -I ..\HARDWARE\Mass_Storage\inc -I ..\HARDWARE\STM32_USB-FS-Device_Driver\inc -I ..\HARDWARE\Offline_SWD -I ..\HARDWARE\DAP -I ..\HARDWARE\SWD -I ..\HARDWARE\algo -I ..\HARDWARE\OLED -I ..\HARDWARE\another -I ..\HARDWARE\DAP_USB\inc -I ..\HARDWARE\DAP_UART -I ..\CMSIS\CoreSupport -I ..\CMSIS\5.6.0\CMSIS\Include -I ..\CMSIS\5.6.0\CMSIS\Driver\Include -I ..\RL\USB\INC-I.\RTE\_STM32-OfflineSWD-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DBLUEPILL -DSWO_PB7 -DSWD_REMAP-o .\objects\hex2bin.o --depend .\objects\hex2bin.d)
-I (..\HARDWARE\another\hex2bin.h)(0x6100E5CF)
+F (..\HARDWARE\another\hex2bin.c)(0x612B75BE)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\HARDWARE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\SYSTEM\spi -I ..\HARDWARE\W25Qxx -I ..\HARDWARE\ff9\src -I ..\HARDWARE\Mass_Storage\inc -I ..\HARDWARE\STM32_USB-FS-Device_Driver\inc -I ..\HARDWARE\Offline_SWD -I ..\HARDWARE\DAP -I ..\HARDWARE\SWD -I ..\HARDWARE\algo -I ..\HARDWARE\OLED -I ..\HARDWARE\another -I ..\HARDWARE\DAP_USB\inc -I ..\HARDWARE\DAP_UART -I ..\CMSIS\CoreSupport -I ..\CMSIS\5.6.0\CMSIS\Include -I ..\CMSIS\5.6.0\CMSIS\Driver\Include -I ..\RL\USB\INC-I.\RTE\_STM32-OfflineSWD-ID:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="526" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DBLUEPILL -DSWO_PB7 -DSWD_REMAP-o .\objects\hex2bin.o --depend .\objects\hex2bin.d)
+I (..\HARDWARE\another\hex2bin.h)(0x612A4E3F)
 I (..\HARDWARE\ff9\src\ff.h)(0x60FEF2C8)
 I (..\HARDWARE\ff9\src\integer.h)(0x60FEF2C8)
 I (..\HARDWARE\ff9\src\ffconf.h)(0x610048A4)

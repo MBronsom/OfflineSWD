@@ -16,5 +16,6 @@ typedef struct {
 } BinFarmat;
 
 char HexFormatUncode(unsigned char *File);
+unsigned char Char2toByte(char* s);
 
 #endif /*_MAIN_H_*/

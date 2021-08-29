@@ -17,7 +17,7 @@ Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
 CPU DLL:         SARMCM3.DLL V5.26.2.0
 Dialog DLL:      DCM.DLL V1.17.2.0
-Target DLL:      CMSIS_AGDI.dll V1.30.6.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
 Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
@@ -28,10 +28,21 @@ Project File Date:  07/28/2021
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32-OfflineSWD'
 compiling main.c...
+..\USER\main.c(175): warning:  #167-D: argument of type "TCHAR *" is incompatible with parameter of type "u8 *"
+  					else if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+..\USER\main.c(188): warning:  #167-D: argument of type "TCHAR *" is incompatible with parameter of type "u8 *"
+  					else if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,0,1);
+..\USER\main.c(199): warning:  #167-D: argument of type "TCHAR *" is incompatible with parameter of type "u8 *"
+  					else if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+..\USER\main.c(210): warning:  #167-D: argument of type "TCHAR *" is incompatible with parameter of type "u8 *"
+  					else if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
+..\USER\main.c(780): warning:  #68-D: integer conversion resulted in a change of sign
+  							if(hexread[0] != ':') return -2;
+..\USER\main.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=67032 RO-data=5616 RW-data=1364 ZI-data=28724  
+Program Size: Code=67732 RO-data=5616 RW-data=1364 ZI-data=28724  
 FromELF: creating hex file...
-".\Objects\STM32-OffineSWD.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\STM32-OffineSWD.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 

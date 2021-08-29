@@ -133,8 +133,8 @@ void Draw_Main(){
       {
 				f_readdir(&DirInfo, &FileInfo);
 				int fileLen = strlen(FileInfo.lfname);
-				if(fileLen != 0){
-					if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,1,1);
+				if(fileLen != 0 || strlen(FileInfo.fname)){
+					if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.fname,1,1);
 					else{
 						char fileShortName[7] = {0};
 						strncpy(fileShortName, FileInfo.lfname, 7);
@@ -153,7 +153,7 @@ void Draw_Main(){
 	fileChangeCount = 0;
 	while(1)
 	{
-		if(menuType == MAIN_WINDOW && select == 1){
+		if(menuType == MAIN_WINDOW && select == 1 && strlen(FileInfo.lfname) > 7){
 			char fileShortName[7] = {0};
 			strncpy(fileShortName, &FileInfo.lfname[fileCount], 7);
 			OLED_ShowString(45,1,(u8*)fileShortName,0,1);
@@ -168,13 +168,11 @@ void Draw_Main(){
 			switch(select){
 				case 0:
 				  if(strlen(FileInfo.lfname) != 0){
-						if(strlen(FileInfo.lfname) < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,1,1);
-						else{
-							char fileShortName[7] = {0};
-						  strncpy(fileShortName, FileInfo.lfname, 7);
-						  OLED_ShowString(45,1,(u8*)fileShortName,1,1);
-						}
+						char fileShortName[7] = {0};
+						strncpy(fileShortName, FileInfo.lfname, 7);
+						OLED_ShowString(45,1,(u8*)fileShortName,1,1);
 					}
+					else if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
 				  else OLED_ShowString(45,1,(u8*)"NULL",1,1);
 					OLED_ShowString(110,1,(u8*)">>",1,1);
 				  OLED_ShowString(92,2,(u8*)"FLASH",1,1);
@@ -183,39 +181,33 @@ void Draw_Main(){
 					fileCount = 0;
 				  fileChangeCount = 0;
 				  if(strlen(FileInfo.lfname) != 0){
-						if(strlen(FileInfo.lfname) < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,0,1);
-						else{
-							char fileShortName[7] = {0};
-						  strncpy(fileShortName, FileInfo.lfname, 7);
-						  OLED_ShowString(45,1,(u8*)fileShortName,0,1);
-						}
+						char fileShortName[7] = {0};
+						strncpy(fileShortName, FileInfo.lfname, 7);
+						OLED_ShowString(45,1,(u8*)fileShortName,0,1);
 					}
+					else if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,0,1);
 				  else OLED_ShowString(45,1,(u8*)"NULL",0,1);
 					OLED_ShowString(110,1,(u8*)">>",1,1);
 				  OLED_ShowString(92,2,(u8*)"FLASH",1,1);
 				  break;
 				case 2:
 				  if(strlen(FileInfo.lfname) != 0){
-						if(strlen(FileInfo.lfname) < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,1,1);
-						else{
-							char fileShortName[7] = {0};
-						  strncpy(fileShortName, FileInfo.lfname, 7);
-						  OLED_ShowString(45,1,(u8*)fileShortName,1,1);
-						}
+						char fileShortName[7] = {0};
+						strncpy(fileShortName, FileInfo.lfname, 7);
+						OLED_ShowString(45,1,(u8*)fileShortName,1,1);
 					}
+					else if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
 				  else OLED_ShowString(45,1,(u8*)"NULL",1,1);
 					OLED_ShowString(110,1,(u8*)">>",0,1);
 				  OLED_ShowString(92,2,(u8*)"FLASH",1,1);
 				  break;
 				case 3:
 				  if(strlen(FileInfo.lfname) != 0){
-						if(strlen(FileInfo.lfname) < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,1,1);
-						else{
-							char fileShortName[7] = {0};
-						  strncpy(fileShortName, FileInfo.lfname, 7);
-						  OLED_ShowString(45,1,(u8*)fileShortName,1,1);
-						}
+						char fileShortName[7] = {0};
+						strncpy(fileShortName, FileInfo.lfname, 7);
+						OLED_ShowString(45,1,(u8*)fileShortName,1,1);
 					}
+					else if(strlen(FileInfo.fname) != 0) OLED_ShowString(45,1,FileInfo.fname,1,1);
 				  else OLED_ShowString(45,1,(u8*)"NULL",1,1);
 					OLED_ShowString(110,1,(u8*)">>",1,1);
 				  OLED_ShowString(92,2,(u8*)"FLASH",0,1);
@@ -227,22 +219,22 @@ void Draw_Main(){
 				case 1: //选择文件
 					fileCount = 0;
 				  fileChangeCount = 0;
-					if(strlen(FileInfo.lfname) != 0){
+					if(strlen(FileInfo.lfname) != 0 || strlen(FileInfo.fname) != 0){
 						f_readdir(&DirInfo, &FileInfo);
 						OLED_ShowString(45,1,(u8*)"          ",1, 1);
-						if(strlen(FileInfo.lfname) < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,0,1);
+						if(strlen(FileInfo.lfname) < 7) OLED_ShowString(45,1,(u8*)FileInfo.fname,0,1);
 						else{
 							char fileShortName[7] = {0};
 							strncpy(fileShortName, FileInfo.lfname, 7);
 							OLED_ShowString(45,1,(u8*)fileShortName,0,1);
 						}
 						OLED_ShowString(110,1,(u8*)">>",1,1);
-						if(!FileInfo.lfname[0]){
+						if(!FileInfo.lfname[0] || !FileInfo.fname[0]){
 							f_opendir(&DirInfo,(const TCHAR*)"0:");
 							f_readdir(&DirInfo, &FileInfo);
 							f_readdir(&DirInfo, &FileInfo);
 							OLED_ShowString(45,1,(u8*)"          ",1,1);
-							if(strlen(FileInfo.lfname) < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,0,1);
+							if(strlen(FileInfo.lfname) < 7) OLED_ShowString(45,1,(u8*)FileInfo.fname,0,1);
 							else{
 								char fileShortName[7] = {0};
 								strncpy(fileShortName, FileInfo.lfname, 7);
@@ -340,17 +332,17 @@ void Draw_Main(){
 										{
 											if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
 											{
-												 f_readdir(&DirInfo, &FileInfo);
-												 int fileLen = strlen(FileInfo.lfname);
-												 if(fileLen != 0){
-													 if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,1,1);
-													 else{
-													 	 char fileShortName[7] = {0};
-														 strncpy(fileShortName, FileInfo.lfname, 7);
-														 OLED_ShowString(45,1,(u8*)fileShortName,1,1);
-													 }
-												 }
-												 else OLED_ShowString(45,1,(u8*)"NULL",1,1);
+												f_readdir(&DirInfo, &FileInfo);
+												int fileLen = strlen(FileInfo.lfname);
+												if(fileLen != 0 || strlen(FileInfo.fname)){
+													if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.fname,1,1);
+													else{
+														char fileShortName[7] = {0};
+														strncpy(fileShortName, FileInfo.lfname, 7);
+														OLED_ShowString(45,1,(u8*)fileShortName,1,1);
+													}
+												}
+												else OLED_ShowString(45,1,(u8*)"NULL",1,1);
 											}
 										}		
 										OLED_ShowString(45,-1,(u8*)"SELECT HEX",1,0);
@@ -410,116 +402,125 @@ void Draw_Main(){
 		        OLED_DrawBMP(0,0,33,33,FlashLogo);
 						if(f_open(&fnew, (const TCHAR*)FileInfo.lfname,FA_READ ) == FR_OK){
 		          OLED_ShowString(45,-1,(u8*)"HEX  FLASH",1,0);
-							if(HexFormatUncode((u8*)FileInfo.lfname)!=1){
-								OLED_ShowString(45,2,(u8*)"          ",1,0);
-			          OLED_ShowString(45,2,(u8*)"ERR",1,0);
-								select = 0;
-			          while(1)
-			          {
-				          if(Scan_Key() == 1){
-					          select ++;
-					          if(select == 1) {
-						          OLED_ShowString(98,2,(u8*)"    ",1,1);
-						          OLED_ShowString(98,2,(u8*)"BACK",0,1);
-					          }
-					          else{
-					        	  OLED_ShowString(98,2,(u8*)"    ",1,1);
-						          OLED_ShowString(98,2,(u8*)"BACK",1,1);
-					          }
-					           if(select == 2) select = 0;
-				          }
-				          if(Scan_Key() == 2){
-					          if(select == 1) break;
-				          }
-			          }
-			          OLED_Clear();
-		            OLED_DrawBMP(0,0,33,33,FlashLogo);
-							  if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* 打开文件夹目录成功，目录信息已经在dir结构体中保存 */
-                {
-                  if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
-                  {
-				             f_readdir(&DirInfo, &FileInfo);
-				             int fileLen = strlen(FileInfo.lfname);
-										 if(fileLen != 0){
-											 if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,1,1);
-											 else{
-												 char fileShortName[7] = {0};
-												 strncpy(fileShortName, FileInfo.lfname, 7);
-												 OLED_ShowString(45,1,(u8*)fileShortName,1,1);
-											 }
-										 }
-										 else OLED_ShowString(45,1,(u8*)"NULL",1,1);
-			            }
+		          while(!FLASH_HEX_SWD((u8*)FileInfo.lfname)){
+		            u8 WaitTips[] = "...";
+			          OLED_ShowString(45,1,(u8*)"          ",1,0);
+			          OLED_ShowString(45,2,(u8*)"WAIT",1,1);
+			          for(i=0;i<3;i++){
+                  OLED_ShowChar(69+i*6,2,WaitTips[i],1);
+	                delay_ms(200);
 	              }
-								menuType = MAIN_WINDOW;
-	              OLED_ShowString(45,-1,(u8*)"SELECT HEX",1,0);
-	              OLED_ShowString(45,0,(u8*)"----------",1,0);
-	              OLED_ShowString(110,1,(u8*)">>",1,1);
-	              OLED_ShowString(92,2,(u8*)"FLASH",1,1);
-	              select = 0;
-							}
-							else{
-							  delay_ms(100);
-							  OLED_ShowString(45,1,(u8*)"          ",1,0);
-							  OLED_ShowString(45,2,(u8*)"          ",1,0);
-		            while(!FLASH_SWD((u8*)"write.bin")){
-		              u8 WaitTips[] = "...";
-			            OLED_ShowString(45,1,(u8*)"          ",1,0);
-			            OLED_ShowString(45,2,(u8*)"WAIT",1,1);
-			            for(i=0;i<3;i++){
-                    OLED_ShowChar(69+i*6,2,WaitTips[i],1);
-	                  delay_ms(200);
-	                }
-			            OLED_ShowString(45,2,(u8*)"       ",1,1);
-		            }
-								f_unlink("0:/write.bin");
-			          OLED_ShowString(98,2,(u8*)"BACK",1,1);
-			          select = 0;
-			          while(1)
-			          {
-				          if(Scan_Key() == 1){
-					          select ++;
-					          if(select == 1) {
-						          OLED_ShowString(98,2,(u8*)"    ",1,1);
-						          OLED_ShowString(98,2,(u8*)"BACK",0,1);
-					          }
-					          else{
-					        	  OLED_ShowString(98,2,(u8*)"    ",1,1);
-						          OLED_ShowString(98,2,(u8*)"BACK",1,1);
-					          }
-					           if(select == 2) select = 0;
-				          }
-				          if(Scan_Key() == 2){
-					          if(select == 1) break;
-				          }
-			          }
-			          OLED_Clear();
-		            OLED_DrawBMP(0,0,33,33,FlashLogo);
-							  if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* 打开文件夹目录成功，目录信息已经在dir结构体中保存 */
-                {
-                  if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
-                  {
-				             f_readdir(&DirInfo, &FileInfo);
-				             int fileLen = strlen(FileInfo.lfname);
-										 if(fileLen != 0){
-											 if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,1,1);
-											 else{
-												 char fileShortName[7] = {0};
-												 strncpy(fileShortName, FileInfo.lfname, 7);
-												 OLED_ShowString(45,1,(u8*)fileShortName,1,1);
-											 }
-										 }
-										 else OLED_ShowString(45,1,(u8*)"NULL",1,1);
-			            }
-	              }
-								menuType = MAIN_WINDOW;
-	              OLED_ShowString(45,-1,(u8*)"SELECT HEX",1,0);
-	              OLED_ShowString(45,0,(u8*)"----------",1,0);
-	              OLED_ShowString(110,1,(u8*)">>",1,1);
-	              OLED_ShowString(92,2,(u8*)"FLASH",1,1);
-	              select = 0;
+			          OLED_ShowString(45,2,(u8*)"       ",1,1);
 		          }
-					  }
+			        OLED_ShowString(98,2,(u8*)"BACK",1,1);
+			        select = 0;
+			        while(1)
+			        {
+				        if(Scan_Key() == 1){
+					        select ++;
+					        if(select == 1) {
+						        OLED_ShowString(98,2,(u8*)"    ",1,1);
+						        OLED_ShowString(98,2,(u8*)"BACK",0,1);
+					        }
+					        else{
+					        	OLED_ShowString(98,2,(u8*)"    ",1,1);
+						        OLED_ShowString(98,2,(u8*)"BACK",1,1);
+					        }
+					         if(select == 2) select = 0;
+				        }
+				        if(Scan_Key() == 2){
+					        if(select == 1) break;
+				        }
+			        }
+			        OLED_Clear();
+		          OLED_DrawBMP(0,0,33,33,FlashLogo);
+							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* 打开文件夹目录成功，目录信息已经在dir结构体中保存 */
+              {
+                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
+								{
+									f_readdir(&DirInfo, &FileInfo);
+									int fileLen = strlen(FileInfo.lfname);
+									if(fileLen != 0 || strlen(FileInfo.fname)){
+										if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.fname,1,1);
+										else{
+											char fileShortName[7] = {0};
+											strncpy(fileShortName, FileInfo.lfname, 7);
+											OLED_ShowString(45,1,(u8*)fileShortName,1,1);
+										}
+									}
+									else OLED_ShowString(45,1,(u8*)"NULL",1,1);
+								}
+	            }		
+							menuType = MAIN_WINDOW;
+	            OLED_ShowString(45,-1,(u8*)"SELECT HEX",1,0);
+	            OLED_ShowString(45,0,(u8*)"----------",1,0);
+	            OLED_ShowString(110,1,(u8*)">>",1,1);
+	            OLED_ShowString(92,2,(u8*)"FLASH",1,1);
+	            select = 0;
+		        }
+					}
+					else if(strstr(FileInfo.fname,".hex")) { //短HEX文件烧写模式
+						menuType = HEX_WINDOW;
+						OLED_Clear();
+		        OLED_DrawBMP(0,0,33,33,FlashLogo);
+						if(f_open(&fnew, (const TCHAR*)FileInfo.fname,FA_READ ) == FR_OK){
+		          OLED_ShowString(45,-1,(u8*)"HEX  FLASH",1,0);
+		          while(!FLASH_HEX_SWD((u8*)FileInfo.fname)){
+		            u8 WaitTips[] = "...";
+			          OLED_ShowString(45,1,(u8*)"          ",1,0);
+			          OLED_ShowString(45,2,(u8*)"WAIT",1,1);
+			          for(i=0;i<3;i++){
+                  OLED_ShowChar(69+i*6,2,WaitTips[i],1);
+	                delay_ms(200);
+	              }
+			          OLED_ShowString(45,2,(u8*)"       ",1,1);
+		          }
+			        OLED_ShowString(98,2,(u8*)"BACK",1,1);
+			        select = 0;
+			        while(1)
+			        {
+				        if(Scan_Key() == 1){
+					        select ++;
+					        if(select == 1) {
+						        OLED_ShowString(98,2,(u8*)"    ",1,1);
+						        OLED_ShowString(98,2,(u8*)"BACK",0,1);
+					        }
+					        else{
+					        	OLED_ShowString(98,2,(u8*)"    ",1,1);
+						        OLED_ShowString(98,2,(u8*)"BACK",1,1);
+					        }
+					         if(select == 2) select = 0;
+				        }
+				        if(Scan_Key() == 2){
+					        if(select == 1) break;
+				        }
+			        }
+			        OLED_Clear();
+		          OLED_DrawBMP(0,0,33,33,FlashLogo);
+							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* 打开文件夹目录成功，目录信息已经在dir结构体中保存 */
+              {
+                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
+								{
+									f_readdir(&DirInfo, &FileInfo);
+									int fileLen = strlen(FileInfo.lfname);
+									if(fileLen != 0 || strlen(FileInfo.fname)){
+										if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.fname,1,1);
+										else{
+											char fileShortName[7] = {0};
+											strncpy(fileShortName, FileInfo.lfname, 7);
+											OLED_ShowString(45,1,(u8*)fileShortName,1,1);
+										}
+									}
+									else OLED_ShowString(45,1,(u8*)"NULL",1,1);
+								}
+	            }		
+							menuType = MAIN_WINDOW;
+	            OLED_ShowString(45,-1,(u8*)"SELECT HEX",1,0);
+	            OLED_ShowString(45,0,(u8*)"----------",1,0);
+	            OLED_ShowString(110,1,(u8*)">>",1,1);
+	            OLED_ShowString(92,2,(u8*)"FLASH",1,1);
+	            select = 0;
+		        }
 					}
 				  else if(strstr(FileInfo.lfname,".bin")) { //BIN文件烧写模式
 						menuType = BIN_WINDOW;
@@ -562,19 +563,82 @@ void Draw_Main(){
 							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* 打开文件夹目录成功，目录信息已经在dir结构体中保存 */
               {
                 if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
-                {
-				           f_readdir(&DirInfo, &FileInfo);
-				           int fileLen = strlen(FileInfo.lfname);
-									 if(fileLen != 0){
-										 if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.lfname,1,1);
-										 else{
-											 char fileShortName[7] = {0};
-											 strncpy(fileShortName, FileInfo.lfname, 7);
-											 OLED_ShowString(45,1,(u8*)fileShortName,1,1);
-										 }
-									 }
-									 else OLED_ShowString(45,1,(u8*)"NULL",1,1);
-			          }
+								{
+									f_readdir(&DirInfo, &FileInfo);
+									int fileLen = strlen(FileInfo.lfname);
+									if(fileLen != 0 || strlen(FileInfo.fname)){
+										if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.fname,1,1);
+										else{
+											char fileShortName[7] = {0};
+											strncpy(fileShortName, FileInfo.lfname, 7);
+											OLED_ShowString(45,1,(u8*)fileShortName,1,1);
+										}
+									}
+									else OLED_ShowString(45,1,(u8*)"NULL",1,1);
+								}
+	            }		
+							menuType = MAIN_WINDOW;
+	            OLED_ShowString(45,-1,(u8*)"SELECT HEX",1,0);
+	            OLED_ShowString(45,0,(u8*)"----------",1,0);
+	            OLED_ShowString(110,1,(u8*)">>",1,1);
+	            OLED_ShowString(92,2,(u8*)"FLASH",1,1);
+	            select = 0;
+		        }
+					}
+					else if(strstr(FileInfo.fname,".bin")) { //短BIN文件烧写模式
+						menuType = BIN_WINDOW;
+						OLED_Clear();
+		        OLED_DrawBMP(0,0,33,33,FlashLogo);
+						if(f_open(&fnew, (const TCHAR*)FileInfo.fname,FA_READ ) == FR_OK){
+		          OLED_ShowString(45,-1,(u8*)"BIN  FLASH",1,0);
+		          while(!FLASH_SWD((u8*)FileInfo.fname)){
+		            u8 WaitTips[] = "...";
+			          OLED_ShowString(45,1,(u8*)"          ",1,0);
+			          OLED_ShowString(45,2,(u8*)"WAIT",1,1);
+			          for(i=0;i<3;i++){
+                  OLED_ShowChar(69+i*6,2,WaitTips[i],1);
+	                delay_ms(200);
+	              }
+			          OLED_ShowString(45,2,(u8*)"       ",1,1);
+		          }
+			        OLED_ShowString(98,2,(u8*)"BACK",1,1);
+			        select = 0;
+			        while(1)
+			        {
+				        if(Scan_Key() == 1){
+					        select ++;
+					        if(select == 1) {
+						        OLED_ShowString(98,2,(u8*)"    ",1,1);
+						        OLED_ShowString(98,2,(u8*)"BACK",0,1);
+					        }
+					        else{
+					        	OLED_ShowString(98,2,(u8*)"    ",1,1);
+						        OLED_ShowString(98,2,(u8*)"BACK",1,1);
+					        }
+					         if(select == 2) select = 0;
+				        }
+				        if(Scan_Key() == 2){
+					        if(select == 1) break;
+				        }
+			        }
+			        OLED_Clear();
+		          OLED_DrawBMP(0,0,33,33,FlashLogo);
+							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* 打开文件夹目录成功，目录信息已经在dir结构体中保存 */
+              {
+                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* 读文件信息到文件状态结构体中 */
+								{
+									f_readdir(&DirInfo, &FileInfo);
+									int fileLen = strlen(FileInfo.lfname);
+									if(fileLen != 0 || strlen(FileInfo.fname)){
+										if(fileLen < 7) OLED_ShowString(45,1,(u8*)FileInfo.fname,1,1);
+										else{
+											char fileShortName[7] = {0};
+											strncpy(fileShortName, FileInfo.lfname, 7);
+											OLED_ShowString(45,1,(u8*)fileShortName,1,1);
+										}
+									}
+									else OLED_ShowString(45,1,(u8*)"NULL",1,1);
+								}
 	            }		
 							menuType = MAIN_WINDOW;
 	            OLED_ShowString(45,-1,(u8*)"SELECT HEX",1,0);
@@ -657,7 +721,7 @@ u8 FLASH_SWD(u8 *File){
 								 }
 								 if(progess>=80 && progess<90) {
 									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"=======",1,0);
+									 OLED_ShowString(45,1,(u8*)"========",1,0);
                    OLED_ShowString(45,2,(u8*)"80%",1,0);
 								 }
 								 if(progess>=90 && progess<100) {
@@ -687,6 +751,130 @@ u8 FLASH_SWD(u8 *File){
 	return 0;
 }
 
+
+u8 FLASH_HEX_SWD(u8 *File){
+	char hexread[64];
+	uint32_t nowSize = 0;
+	Res = f_open(&fnew, (const TCHAR*)File,FA_READ );
+	if ( Res == FR_OK )
+	{
+	  addr = 0;
+		if(swd_init_debug())
+		{
+				if (target_opt_init() == ERROR_SUCCESS)
+				{
+					if (target_opt_erase_chip() != ERROR_SUCCESS){
+					  return 0;
+					}
+				}else return 0;
+				target_opt_uninit();
+			  if (swd_init_debug())
+			{
+				if (target_flash_init(0x08000000) == ERROR_SUCCESS)
+				{
+					if (target_flash_erase_chip() == ERROR_SUCCESS)
+					{
+						int add_off = 0;
+						char head_data[16] = {0};
+						while(f_gets(hexread,64,&fnew)!=NULL){
+							if(hexread[0] != ':') return -2;
+							else
+							{
+								nowSize += strlen(hexread);
+								uint64_t offset=Char2toByte(&hexread[3])*256+Char2toByte(&hexread[5])+add_off; //偏移量
+								uint8_t type=Char2toByte(&hexread[7]); //类型
+								uint8_t datalen=Char2toByte(&hexread[1]); //当前行数据长度
+								
+								if(type==4) //当类型为4时添加偏移量
+									add_off = Char2toByte(&hexread[11])*0x10000;
+								else if(type==0) //当类型为1时为数据
+								{  
+										if(offset == 0 || offset % 1024 != 0){
+											for(i=0; i<datalen; i++)
+													rData[i+(offset-((offset/1024)*1024))] = Char2toByte(&hexread[9+2*i]);
+										}
+										else if(offset % 1024 == 0){
+											for(i=0; i<datalen; i++)
+													head_data[i] = Char2toByte(&hexread[9+2*i]);
+										}
+										if(offset >= 1024 && offset % 1024 == 0)
+										{
+											if (target_flash_program_page(0x08000000 + addr, (u8*)&rData[0], 1024) == ERROR_SUCCESS)
+											{
+												 u32 progess = (((double)nowSize/f_size(&fnew))*100);
+												 if(progess>=10 && progess<20) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"=",1,0);
+													 OLED_ShowString(45,2,(u8*)"10%",1,0);
+												 }
+												 if(progess>=20 && progess<30) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"==",1,0);
+													 OLED_ShowString(45,2,(u8*)"20%",1,0);
+												 }
+												 if(progess>=30 && progess<40) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"===",1,0);
+													 OLED_ShowString(45,2,(u8*)"30%",1,0);
+												 }
+												 if(progess>=40 && progess<50) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"====",1,0);
+													 OLED_ShowString(45,2,(u8*)"40%",1,0);
+												 }
+												 if(progess>=50 && progess<60) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"=====",1,0);
+													 OLED_ShowString(45,2,(u8*)"50%",1,0);
+												 }
+												 if(progess>=60 && progess<70) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"======",1,0);
+													 OLED_ShowString(45,2,(u8*)"60%",1,0);
+												 }
+												 if(progess>=70 && progess<80) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"=======",1,0);
+													 OLED_ShowString(45,2,(u8*)(u8*)"70%",1,0);
+												 }
+												 if(progess>=80 && progess<90) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"========",1,0);
+													 OLED_ShowString(45,2,(u8*)"80%",1,0);
+												 }
+												 if(progess>=90 && progess<100) {
+													 DEBUG_LED = !DEBUG_LED;
+													 OLED_ShowString(45,1,(u8*)"=========",1,0);
+													 OLED_ShowString(45,2,(u8*)"90%",1,0);
+												 }
+												 memset(rData,0xFF,sizeof(rData));
+												 for(i=0; i<datalen; i++)
+													rData[i] = head_data[i];
+											}else return 0;
+											addr += 1024;
+									}
+								}
+							}
+		        }
+						if (target_flash_program_page(0x08000000 + addr, (u8*)&rData[0], 1024) != ERROR_SUCCESS) return 0;
+						if (swd_init_debug())
+		        {
+							 DEBUG_LED = 1;
+			         swd_set_target_reset(0);//复位运行
+							 delay_ms(100);
+               OLED_ShowString(45,1,(u8*)"==========",1,0);
+               OLED_ShowString(45,2,(u8*)"DONE",1,0);
+							 return 1;
+		        }
+						else return 0;
+					}else return 0;
+				}
+				target_flash_uninit();
+			}else return 0;
+		}else return 0;
+	}else return 0;
+	return 0;
+}
 /***********************按键监测************************/
 u8 Scan_Key(){
 	if(!SELECT){
