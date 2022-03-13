@@ -1,6 +1,6 @@
 #include "main.h"
 
-/***********************ÎÄ¼şÏµÍ³Ê¹ÓÃ¶¨Òå************************/
+/***********************æ–‡ä»¶ç³»ç»Ÿä½¿ç”¨å®šä¹‰************************/
 FIL fnew;													/* file objects */
 FILINFO FileInfo = {0};
 DIR DirInfo;
@@ -11,7 +11,7 @@ UINT br, bw;            					/* File R/W count */
 TCHAR lFileName[255] = {0};
 
 
-/***********************±äÁ¿¶¨Òå************************/
+/***********************å˜é‡å®šä¹‰************************/
 char rData[1024] = "";
 u8 readflag = 1;
 u32 addr = 0;
@@ -23,46 +23,46 @@ u8 breakDebug = 0;
 u8 debugMode = 0;
 u8 menuType = MAIN_WINDOW;
 char* debugBaud[9] = {"4800","9600","14400","19200","38400","57600","115200","256000","921600"};
-u8 debugSelect = 1; //Ä¬ÈÏÑ¡Ôñ²¨ÌØÂÊÎª9600
+u8 debugSelect = 1; //é»˜è®¤é€‰æ‹©æ³¢ç‰¹ç‡ä¸º9600
 uint16_t bytesread;
 u8 Logo[] = "BRONSON";
 
-/***********************Ö÷º¯Êı************************/
+/***********************ä¸»å‡½æ•°************************/
  int main(void)
  {
-	 Init_device(); //³õÊ¼»¯Éè±¸
-	 Draw_Logo(); //»æÖÆLOGO
-	 Draw_Menu(); //»æÖÆ²Ëµ¥
+	 Init_device(); //åˆå§‹åŒ–è®¾å¤‡
+	 Draw_Logo(); //ç»˜åˆ¶LOGO
+	 Draw_Menu(); //ç»˜åˆ¶èœå•
 	 while(1);
 }
  
-/***********************³õÊ¼»¯Éè±¸************************/
+/***********************åˆå§‹åŒ–è®¾å¤‡************************/
 void Init_device()
 {
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); //ÓÅÏÈ¼¶µ÷Õû
-	delay_init(); //³õÊ¼»¯ÑÓÊ±
-	Key_Init(); //°´¼ü³õÊ¼»¯
-	W25QXX_Init(); //³õÊ¼»¯FlashĞ¾Æ¬
-	f_mount(0,&fs); //³õÊ¼»¯ÎÄ¼şÏµÍ³
-	OLED_Init(); //³õÊ¼»¯OLED  
-	OLED_Clear(); //Çå¿ÕOLEDÆÁÄ»
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); //ä¼˜å…ˆçº§è°ƒæ•´
+	delay_init(); //åˆå§‹åŒ–å»¶æ—¶
+	Key_Init(); //æŒ‰é”®åˆå§‹åŒ–
+	W25QXX_Init(); //åˆå§‹åŒ–FlashèŠ¯ç‰‡
+	f_mount(0,&fs); //åˆå§‹åŒ–æ–‡ä»¶ç³»ç»Ÿ
+	OLED_Init(); //åˆå§‹åŒ–OLED  
+	OLED_Clear(); //æ¸…ç©ºOLEDå±å¹•
 	LED_Init();
-	if(Scan_Key() == 1 ){ //°´×¡SELTCT¿ª»ú½øÈëCMSIS-DAPÄ£Ê½
-		Draw_Logo(); //»æÖÆLOGO
-		OLED_DrawBMP(0,0,34,34,USBLogo); //»æÖÆÍ¼±ê
-		OLED_ShowString(38,1,(u8*)"DAP Connect",1,0); //»æÖÆÌáÊ¾´Ê
-		Init_DAPUSB(); //³õÊ¼»¯DAP
-		Do_DAPUSB(); //DAPÑ­»·
+	if(Scan_Key() == 1 ){ //æŒ‰ä½SELTCTå¼€æœºè¿›å…¥CMSIS-DAPæ¨¡å¼
+		Draw_Logo(); //ç»˜åˆ¶LOGO
+		OLED_DrawBMP(0,0,34,34,USBLogo); //ç»˜åˆ¶å›¾æ ‡
+		OLED_ShowString(38,1,(u8*)"DAP Connect",1,0); //ç»˜åˆ¶æç¤ºè¯
+		Init_DAPUSB(); //åˆå§‹åŒ–DAP
+		Do_DAPUSB(); //DAPå¾ªç¯
 	}
 	else{
-		Set_System(); //ÉèÖÃUSBÏµÍ³
-	  Set_USBClock(); //ÉèÖÃUSBÊ±ÖÓ
-	  USB_Interrupts_Config(); //ÉèÖÃUSBÖĞ¶Ï
-	  USB_Init(); //³õÊ¼»¯USB
+		Set_System(); //è®¾ç½®USBç³»ç»Ÿ
+	  Set_USBClock(); //è®¾ç½®USBæ—¶é’Ÿ
+	  USB_Interrupts_Config(); //è®¾ç½®USBä¸­æ–­
+	  USB_Init(); //åˆå§‹åŒ–USB
 	}
 }
 
-/***********************»æÖÆLOGO************************/
+/***********************ç»˜åˆ¶LOGO************************/
 void Draw_Logo(){
 	 u8 i;
 	 for(i=0;i<7;i++){
@@ -73,7 +73,7 @@ void Draw_Logo(){
 	 OLED_Clear();
 }
 
-/***********************»æÖÆ²Ëµ¥************************/
+/***********************ç»˜åˆ¶èœå•************************/
 void Draw_Menu(){
 	if(bDeviceState != UNCONNECTED){
 		OLED_DrawBMP(0,0,34,34,USBLogo);
@@ -81,7 +81,7 @@ void Draw_Menu(){
 	}
   else{
 		OLED_DrawBMP(0,0,33,33,FlashLogo);
-		//×Ô¶¯ÉÕĞ´Ä£Ê½£¨½«ÃüÃûÎªAUTO.binµÄÎÄ¼ş·ÅÈë¸ùÄ¿Â¼£©
+		//è‡ªåŠ¨çƒ§å†™æ¨¡å¼ï¼ˆå°†å‘½åä¸ºAUTO.binçš„æ–‡ä»¶æ”¾å…¥æ ¹ç›®å½•ï¼‰
 		if(f_open(&fnew, (const TCHAR*)"AUTO.bin",FA_READ ) == FR_OK){ 
 		  OLED_ShowString(45,-1,(u8*)"AUTO FLASH",1,0);
 		  while(!FLASH_SWD((u8*)"AUTO.bin")){
@@ -117,19 +117,19 @@ void Draw_Menu(){
 			OLED_Clear();
 		  OLED_DrawBMP(0,0,33,33,FlashLogo);
 		}
-		Draw_Main(); //½øÈëÖ÷²Ëµ¥
+		Draw_Main(); //è¿›å…¥ä¸»èœå•
 	}
 }
 
-/***********************»æÖÆÖ÷²Ëµ¥************************/
+/***********************ç»˜åˆ¶ä¸»èœå•************************/
 void Draw_Main(){
 	FileInfo.lfname = lFileName;
 	FileInfo.lfsize = 255;
 	
 	f_unlink("0:/write.bin");
-	if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* ´ò¿ªÎÄ¼ş¼ĞÄ¿Â¼³É¹¦£¬Ä¿Â¼ĞÅÏ¢ÒÑ¾­ÔÚdir½á¹¹ÌåÖĞ±£´æ */
+	if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* æ‰“å¼€æ–‡ä»¶å¤¹ç›®å½•æˆåŠŸï¼Œç›®å½•ä¿¡æ¯å·²ç»åœ¨dirç»“æ„ä½“ä¸­ä¿å­˜ */
   {
-      if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* ¶ÁÎÄ¼şĞÅÏ¢µ½ÎÄ¼ş×´Ì¬½á¹¹ÌåÖĞ */
+      if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* è¯»æ–‡ä»¶ä¿¡æ¯åˆ°æ–‡ä»¶çŠ¶æ€ç»“æ„ä½“ä¸­ */
       {
 				f_readdir(&DirInfo, &FileInfo);
 				int fileLen = strlen(FileInfo.lfname);
@@ -216,7 +216,7 @@ void Draw_Main(){
 		}
 		if(Scan_Key() == 2){
 			switch(select){
-				case 1: //Ñ¡ÔñÎÄ¼ş
+				case 1: //é€‰æ‹©æ–‡ä»¶
 					fileCount = 0;
 				  fileChangeCount = 0;
 					if(strlen(FileInfo.lfname) != 0 || strlen(FileInfo.fname) != 0){
@@ -244,7 +244,7 @@ void Draw_Main(){
 						}
 				  }
 					break;
-				case 2: //½øÈëµ÷ÊÔÄ£Ê½
+				case 2: //è¿›å…¥è°ƒè¯•æ¨¡å¼
 					select = 0;
 				  menuType = DEBUG_WINDOW;
 					OLED_Clear();
@@ -289,7 +289,7 @@ void Draw_Main(){
 						
 						if(Scan_Key() == 2){
 							switch(select){
-								  case 1: //ĞŞ¸Äµ÷ÊÔÄ£Ê½²¨ÌØÂÊ
+								  case 1: //ä¿®æ”¹è°ƒè¯•æ¨¡å¼æ³¢ç‰¹ç‡
 										debugSelect++;
 									  if(debugSelect == 9) debugSelect = 0;
 										OLED_ShowString(45,1,(u8*)"      ",0,1);
@@ -324,13 +324,13 @@ void Draw_Main(){
 												break;
 										}
 										break;
-									case 2: //½øÈëÏÂÒ»Ò³Ãæ
+									case 2: //è¿›å…¥ä¸‹ä¸€é¡µé¢
 										menuType = MAIN_WINDOW;
 										OLED_Clear();
 										OLED_DrawBMP(0,0,33,33,FlashLogo);
-										if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* ´ò¿ªÎÄ¼ş¼ĞÄ¿Â¼³É¹¦£¬Ä¿Â¼ĞÅÏ¢ÒÑ¾­ÔÚdir½á¹¹ÌåÖĞ±£´æ */
+										if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* æ‰“å¼€æ–‡ä»¶å¤¹ç›®å½•æˆåŠŸï¼Œç›®å½•ä¿¡æ¯å·²ç»åœ¨dirç»“æ„ä½“ä¸­ä¿å­˜ */
 										{
-											if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* ¶ÁÎÄ¼şĞÅÏ¢µ½ÎÄ¼ş×´Ì¬½á¹¹ÌåÖĞ */
+											if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* è¯»æ–‡ä»¶ä¿¡æ¯åˆ°æ–‡ä»¶çŠ¶æ€ç»“æ„ä½“ä¸­ */
 											{
 												f_readdir(&DirInfo, &FileInfo);
 												int fileLen = strlen(FileInfo.lfname);
@@ -352,7 +352,7 @@ void Draw_Main(){
 										select = 0;
 										breakDebug = 1;
 										break;
-									case 3: //È·ÈÏ½øÈëµ÷ÊÔÄ£Ê½
+									case 3: //ç¡®è®¤è¿›å…¥è°ƒè¯•æ¨¡å¼
 										select = 0;
 									  menuType = DEBUGING_WINDOW;
 									  debugMode = 1;
@@ -395,8 +395,8 @@ void Draw_Main(){
 						}
 					}
 					break;
-				case 3: //½øĞĞÉÕĞ´
-					if(strstr(FileInfo.lfname,".hex")) { //HEXÎÄ¼şÉÕĞ´Ä£Ê½
+				case 3: //è¿›è¡Œçƒ§å†™
+					if(strstr(FileInfo.lfname,".hex")) { //HEXæ–‡ä»¶çƒ§å†™æ¨¡å¼
 						menuType = HEX_WINDOW;
 						OLED_Clear();
 		        OLED_DrawBMP(0,0,33,33,FlashLogo);
@@ -434,9 +434,9 @@ void Draw_Main(){
 			        }
 			        OLED_Clear();
 		          OLED_DrawBMP(0,0,33,33,FlashLogo);
-							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* ´ò¿ªÎÄ¼ş¼ĞÄ¿Â¼³É¹¦£¬Ä¿Â¼ĞÅÏ¢ÒÑ¾­ÔÚdir½á¹¹ÌåÖĞ±£´æ */
+							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* æ‰“å¼€æ–‡ä»¶å¤¹ç›®å½•æˆåŠŸï¼Œç›®å½•ä¿¡æ¯å·²ç»åœ¨dirç»“æ„ä½“ä¸­ä¿å­˜ */
               {
-                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* ¶ÁÎÄ¼şĞÅÏ¢µ½ÎÄ¼ş×´Ì¬½á¹¹ÌåÖĞ */
+                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* è¯»æ–‡ä»¶ä¿¡æ¯åˆ°æ–‡ä»¶çŠ¶æ€ç»“æ„ä½“ä¸­ */
 								{
 									f_readdir(&DirInfo, &FileInfo);
 									int fileLen = strlen(FileInfo.lfname);
@@ -459,7 +459,7 @@ void Draw_Main(){
 	            select = 0;
 		        }
 					}
-					else if(strstr(FileInfo.fname,".hex")) { //¶ÌHEXÎÄ¼şÉÕĞ´Ä£Ê½
+					else if(strstr(FileInfo.fname,".hex")) { //çŸ­HEXæ–‡ä»¶çƒ§å†™æ¨¡å¼
 						menuType = HEX_WINDOW;
 						OLED_Clear();
 		        OLED_DrawBMP(0,0,33,33,FlashLogo);
@@ -497,9 +497,9 @@ void Draw_Main(){
 			        }
 			        OLED_Clear();
 		          OLED_DrawBMP(0,0,33,33,FlashLogo);
-							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* ´ò¿ªÎÄ¼ş¼ĞÄ¿Â¼³É¹¦£¬Ä¿Â¼ĞÅÏ¢ÒÑ¾­ÔÚdir½á¹¹ÌåÖĞ±£´æ */
+							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* æ‰“å¼€æ–‡ä»¶å¤¹ç›®å½•æˆåŠŸï¼Œç›®å½•ä¿¡æ¯å·²ç»åœ¨dirç»“æ„ä½“ä¸­ä¿å­˜ */
               {
-                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* ¶ÁÎÄ¼şĞÅÏ¢µ½ÎÄ¼ş×´Ì¬½á¹¹ÌåÖĞ */
+                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* è¯»æ–‡ä»¶ä¿¡æ¯åˆ°æ–‡ä»¶çŠ¶æ€ç»“æ„ä½“ä¸­ */
 								{
 									f_readdir(&DirInfo, &FileInfo);
 									int fileLen = strlen(FileInfo.lfname);
@@ -522,7 +522,7 @@ void Draw_Main(){
 	            select = 0;
 		        }
 					}
-				  else if(strstr(FileInfo.lfname,".bin")) { //BINÎÄ¼şÉÕĞ´Ä£Ê½
+				  else if(strstr(FileInfo.lfname,".bin")) { //BINæ–‡ä»¶çƒ§å†™æ¨¡å¼
 						menuType = BIN_WINDOW;
 						OLED_Clear();
 		        OLED_DrawBMP(0,0,33,33,FlashLogo);
@@ -560,9 +560,9 @@ void Draw_Main(){
 			        }
 			        OLED_Clear();
 		          OLED_DrawBMP(0,0,33,33,FlashLogo);
-							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* ´ò¿ªÎÄ¼ş¼ĞÄ¿Â¼³É¹¦£¬Ä¿Â¼ĞÅÏ¢ÒÑ¾­ÔÚdir½á¹¹ÌåÖĞ±£´æ */
+							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* æ‰“å¼€æ–‡ä»¶å¤¹ç›®å½•æˆåŠŸï¼Œç›®å½•ä¿¡æ¯å·²ç»åœ¨dirç»“æ„ä½“ä¸­ä¿å­˜ */
               {
-                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* ¶ÁÎÄ¼şĞÅÏ¢µ½ÎÄ¼ş×´Ì¬½á¹¹ÌåÖĞ */
+                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* è¯»æ–‡ä»¶ä¿¡æ¯åˆ°æ–‡ä»¶çŠ¶æ€ç»“æ„ä½“ä¸­ */
 								{
 									f_readdir(&DirInfo, &FileInfo);
 									int fileLen = strlen(FileInfo.lfname);
@@ -585,7 +585,7 @@ void Draw_Main(){
 	            select = 0;
 		        }
 					}
-					else if(strstr(FileInfo.fname,".bin")) { //¶ÌBINÎÄ¼şÉÕĞ´Ä£Ê½
+					else if(strstr(FileInfo.fname,".bin")) { //çŸ­BINæ–‡ä»¶çƒ§å†™æ¨¡å¼
 						menuType = BIN_WINDOW;
 						OLED_Clear();
 		        OLED_DrawBMP(0,0,33,33,FlashLogo);
@@ -623,9 +623,9 @@ void Draw_Main(){
 			        }
 			        OLED_Clear();
 		          OLED_DrawBMP(0,0,33,33,FlashLogo);
-							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* ´ò¿ªÎÄ¼ş¼ĞÄ¿Â¼³É¹¦£¬Ä¿Â¼ĞÅÏ¢ÒÑ¾­ÔÚdir½á¹¹ÌåÖĞ±£´æ */
+							if(f_opendir(&DirInfo,(const TCHAR*)"0:") == FR_OK)/* æ‰“å¼€æ–‡ä»¶å¤¹ç›®å½•æˆåŠŸï¼Œç›®å½•ä¿¡æ¯å·²ç»åœ¨dirç»“æ„ä½“ä¸­ä¿å­˜ */
               {
-                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* ¶ÁÎÄ¼şĞÅÏ¢µ½ÎÄ¼ş×´Ì¬½á¹¹ÌåÖĞ */
+                if(f_readdir(&DirInfo, &FileInfo) == FR_OK)  /* è¯»æ–‡ä»¶ä¿¡æ¯åˆ°æ–‡ä»¶çŠ¶æ€ç»“æ„ä½“ä¸­ */
 								{
 									f_readdir(&DirInfo, &FileInfo);
 									int fileLen = strlen(FileInfo.lfname);
@@ -654,228 +654,204 @@ void Draw_Main(){
 	}
 }
 
-/***********************ÀëÏßSWDÉÕĞ´************************/
-u8 FLASH_SWD(u8 *File){
-	Res = f_open(&fnew, (const TCHAR*)File,FA_READ );
-	if ( Res == FR_OK )
+/***********************ç¦»çº¿SWDçƒ§å†™************************/
+u8 FLASH_SWD(u8 *File)
+{
+	Res = f_open(&fnew, (const TCHAR *)File, FA_READ);
+	if (Res != FR_OK)
 	{
-		readflag = 1;
-	  addr = 0;
-		if(swd_init_debug())
+		return 0;
+	}
+	readflag = 1;
+	addr = 0;
+	if (!swd_init_debug())
+	{
+		f_close(&fnew);
+		return 0;
+	}
+	if (target_opt_init() != ERROR_SUCCESS)
+	{
+		f_close(&fnew);
+		return 0;
+	}
+	if (target_opt_erase_chip() != ERROR_SUCCESS)
+	{
+		f_close(&fnew);
+		return 0;
+	}
+
+	target_opt_uninit();
+	if (!swd_init_debug())
+	{
+		return 0;
+	}
+	if (target_flash_init(0x08000000) != ERROR_SUCCESS)
+	{
+		target_flash_uninit();
+		return 0;
+	}
+	if (target_flash_erase_chip() != ERROR_SUCCESS)
+	{
+		f_close(&fnew);
+		return 0;
+	}
+	while (1)
+	{
+		Res = f_read(&fnew, rData, 1024, (void *)&bytesread);
+		if ((Res != FR_OK) || (bytesread == 0))
 		{
-				if (target_opt_init() == ERROR_SUCCESS)
-				{
-					if (target_opt_erase_chip() != ERROR_SUCCESS){
-					  return 0;
-					}
-				}else return 0;
-				target_opt_uninit();
-			  if (swd_init_debug())
-			{
-				if (target_flash_init(0x08000000) == ERROR_SUCCESS)
-				{
-					if (target_flash_erase_chip() == ERROR_SUCCESS)
-					{
-						while(readflag){
-			         f_read(&fnew, rData, 1024, (void *)&bytesread);
-			         if(bytesread<1024){
-				         readflag = 0;
-			         }
-								if (target_flash_program_page(0x08000000 + addr, (u8*)&rData[0], 1024) == ERROR_SUCCESS)
-							{
-								 u32 progess = (((double)addr/f_size(&fnew))*100);
-								 if(progess>=10 && progess<20) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"=",1,0);
-                   OLED_ShowString(45,2,(u8*)"10%",1,0);
-								 }
-								 if(progess>=20 && progess<30) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"==",1,0);
-                   OLED_ShowString(45,2,(u8*)"20%",1,0);
-								 }
-								 if(progess>=30 && progess<40) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"===",1,0);
-                   OLED_ShowString(45,2,(u8*)"30%",1,0);
-								 }
-								 if(progess>=40 && progess<50) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"====",1,0);
-                   OLED_ShowString(45,2,(u8*)"40%",1,0);
-								 }
-								 if(progess>=50 && progess<60) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"=====",1,0);
-                   OLED_ShowString(45,2,(u8*)"50%",1,0);
-								 }
-								 if(progess>=60 && progess<70) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"======",1,0);
-                   OLED_ShowString(45,2,(u8*)"60%",1,0);
-								 }
-								 if(progess>=70 && progess<80) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"=======",1,0);
-                   OLED_ShowString(45,2,(u8*)(u8*)"70%",1,0);
-								 }
-								 if(progess>=80 && progess<90) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"========",1,0);
-                   OLED_ShowString(45,2,(u8*)"80%",1,0);
-								 }
-								 if(progess>=90 && progess<100) {
-									 DEBUG_LED = !DEBUG_LED;
-									 OLED_ShowString(45,1,(u8*)"=========",1,0);
-                   OLED_ShowString(45,2,(u8*)"90%",1,0);
-								 }
-							}else return 0;
-							addr += 1024;
-		        }
-						if (swd_init_debug())
-		        {
-							 DEBUG_LED = 1;
-			         swd_set_target_reset(0);//¸´Î»ÔËĞĞ
-							 delay_ms(100);
-               OLED_ShowString(45,1,(u8*)"==========",1,0);
-               OLED_ShowString(45,2,(u8*)"DONE",1,0);
-							 return 1;
-		        }
-						else return 0;
-					}else return 0;
-				}
-				target_flash_uninit();
-			}else return 0;
-		}else return 0;
-	}else return 0;
-	return 0;
+			break;
+		}
+		if (target_flash_program_page(0x08000000 + addr, (u8 *)&rData[0], 1024) != ERROR_SUCCESS)
+		{
+			f_close(&fnew);
+			return 0;
+		}
+		u32 progess = (((double)addr / f_size(&fnew)) * 100);
+		if (progess % 10 == 0)
+		{
+			char temp[16];
+			memset(temp, '=', progess % 10);
+			temp[progess % 10 + 1] = 0;
+			OLED_ShowString(45, 1, temp, 1, 0);
+			snprintf(temp, 15, "%d%%", progess % 10);
+			OLED_ShowString(45, 2, temp, 1, 0);
+
+			DEBUG_LED = !DEBUG_LED;
+		}
+		addr += 1024;
+	}
+	f_close(&fnew);
+	if (!swd_init_debug())
+	{
+		return 0;
+	}
+	DEBUG_LED = 1;
+	swd_set_target_reset(0); //å¤ä½è¿è¡Œ
+	delay_ms(100);
+	OLED_ShowString(45, 1, (u8 *)"==========", 1, 0);
+	OLED_ShowString(45, 2, (u8 *)"DONE", 1, 0);
+	return 1;
 }
 
 
 u8 FLASH_HEX_SWD(u8 *File){
 	char hexread[64];
 	uint32_t nowSize = 0;
-	Res = f_open(&fnew, (const TCHAR*)File,FA_READ );
-	if ( Res == FR_OK )
+	Res = f_open(&fnew, (const TCHAR *)File, FA_READ);
+	if (Res != FR_OK)
 	{
-	  addr = 0;
-		if(swd_init_debug())
+		return 0;
+	}
+	//Res OK
+	addr = 0;
+	if (!swd_init_debug())
+	{
+		f_close(&fnew);
+		return 0;
+	}
+	if (target_opt_init() != ERROR_SUCCESS)
+	{
+		f_close(&fnew);
+		return 0;
+	}
+	if (target_opt_erase_chip() != ERROR_SUCCESS)
+	{
+		f_close(&fnew);
+		return 0;
+	}
+
+	target_opt_uninit();
+	if (!swd_init_debug())
+	{
+		f_close(&fnew);
+		return 0;
+	}
+	if (target_flash_init(0x08000000) != ERROR_SUCCESS)
+	{
+		target_flash_uninit();
+		f_close(&fnew);
+		return 0;
+	}
+	if (target_flash_erase_chip() != ERROR_SUCCESS)
+	{
+		f_close(&fnew);
+		return 0;
+	}
+	int add_off = 0;
+	char head_data[16] = {0};
+	while (f_gets(hexread, 64, &fnew) != NULL)
+	{
+		if (hexread[0] != ':')
 		{
-				if (target_opt_init() == ERROR_SUCCESS)
-				{
-					if (target_opt_erase_chip() != ERROR_SUCCESS){
-					  return 0;
-					}
-				}else return 0;
-				target_opt_uninit();
-			  if (swd_init_debug())
+			return -2;
+			f_close(&fnew);
+		}
+		else
+		{
+			nowSize += strlen(hexread);
+			uint64_t offset = Char2toByte(&hexread[3]) * 256 + Char2toByte(&hexread[5]) + add_off; //åç§»é‡
+			uint8_t type = Char2toByte(&hexread[7]);											   //ç±»å‹
+			uint8_t datalen = Char2toByte(&hexread[1]);											   //å½“å‰è¡Œæ•°æ®é•¿åº¦
+
+			if (type == 4) //å½“ç±»å‹ä¸º4æ—¶æ·»åŠ åç§»é‡
+				add_off = Char2toByte(&hexread[11]) * 0x10000;
+			else if (type == 0) //å½“ç±»å‹ä¸º1æ—¶ä¸ºæ•°æ®
 			{
-				if (target_flash_init(0x08000000) == ERROR_SUCCESS)
+				if (offset == 0 || offset % 1024 != 0)
 				{
-					if (target_flash_erase_chip() == ERROR_SUCCESS)
-					{
-						int add_off = 0;
-						char head_data[16] = {0};
-						while(f_gets(hexread,64,&fnew)!=NULL){
-							if(hexread[0] != ':') return -2;
-							else
-							{
-								nowSize += strlen(hexread);
-								uint64_t offset=Char2toByte(&hexread[3])*256+Char2toByte(&hexread[5])+add_off; //Æ«ÒÆÁ¿
-								uint8_t type=Char2toByte(&hexread[7]); //ÀàĞÍ
-								uint8_t datalen=Char2toByte(&hexread[1]); //µ±Ç°ĞĞÊı¾İ³¤¶È
-								
-								if(type==4) //µ±ÀàĞÍÎª4Ê±Ìí¼ÓÆ«ÒÆÁ¿
-									add_off = Char2toByte(&hexread[11])*0x10000;
-								else if(type==0) //µ±ÀàĞÍÎª1Ê±ÎªÊı¾İ
-								{  
-										if(offset == 0 || offset % 1024 != 0){
-											for(i=0; i<datalen; i++)
-													rData[i+(offset-((offset/1024)*1024))] = Char2toByte(&hexread[9+2*i]);
-										}
-										else if(offset % 1024 == 0){
-											for(i=0; i<datalen; i++)
-													head_data[i] = Char2toByte(&hexread[9+2*i]);
-										}
-										if(offset >= 1024 && offset % 1024 == 0)
-										{
-											if (target_flash_program_page(0x08000000 + addr, (u8*)&rData[0], 1024) == ERROR_SUCCESS)
-											{
-												 u32 progess = (((double)nowSize/f_size(&fnew))*100);
-												 if(progess>=10 && progess<20) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"=",1,0);
-													 OLED_ShowString(45,2,(u8*)"10%",1,0);
-												 }
-												 if(progess>=20 && progess<30) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"==",1,0);
-													 OLED_ShowString(45,2,(u8*)"20%",1,0);
-												 }
-												 if(progess>=30 && progess<40) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"===",1,0);
-													 OLED_ShowString(45,2,(u8*)"30%",1,0);
-												 }
-												 if(progess>=40 && progess<50) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"====",1,0);
-													 OLED_ShowString(45,2,(u8*)"40%",1,0);
-												 }
-												 if(progess>=50 && progess<60) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"=====",1,0);
-													 OLED_ShowString(45,2,(u8*)"50%",1,0);
-												 }
-												 if(progess>=60 && progess<70) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"======",1,0);
-													 OLED_ShowString(45,2,(u8*)"60%",1,0);
-												 }
-												 if(progess>=70 && progess<80) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"=======",1,0);
-													 OLED_ShowString(45,2,(u8*)(u8*)"70%",1,0);
-												 }
-												 if(progess>=80 && progess<90) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"========",1,0);
-													 OLED_ShowString(45,2,(u8*)"80%",1,0);
-												 }
-												 if(progess>=90 && progess<100) {
-													 DEBUG_LED = !DEBUG_LED;
-													 OLED_ShowString(45,1,(u8*)"=========",1,0);
-													 OLED_ShowString(45,2,(u8*)"90%",1,0);
-												 }
-												 memset(rData,0xFF,sizeof(rData));
-												 for(i=0; i<datalen; i++)
-													rData[i] = head_data[i];
-											}else return 0;
-											addr += 1024;
-									}
-								}
-							}
-		        }
-						if (target_flash_program_page(0x08000000 + addr, (u8*)&rData[0], 1024) != ERROR_SUCCESS) return 0;
-						if (swd_init_debug())
-		        {
-							 DEBUG_LED = 1;
-			         swd_set_target_reset(0);//¸´Î»ÔËĞĞ
-							 delay_ms(100);
-               OLED_ShowString(45,1,(u8*)"==========",1,0);
-               OLED_ShowString(45,2,(u8*)"DONE",1,0);
-							 return 1;
-		        }
-						else return 0;
-					}else return 0;
+					for (i = 0; i < datalen; i++)
+						rData[i + (offset - ((offset / 1024) * 1024))] = Char2toByte(&hexread[9 + 2 * i]);
 				}
-				target_flash_uninit();
-			}else return 0;
-		}else return 0;
-	}else return 0;
-	return 0;
+				else if (offset % 1024 == 0)
+				{
+					for (i = 0; i < datalen; i++)
+						head_data[i] = Char2toByte(&hexread[9 + 2 * i]);
+				}
+				if (offset >= 1024 && offset % 1024 == 0)
+				{
+					if (target_flash_program_page(0x08000000 + addr, (u8 *)&rData[0], 1024) != ERROR_SUCCESS)
+					{
+						f_close(&fnew);
+						return 0;
+					}
+					u32 progess = (((double)nowSize / f_size(&fnew)) * 100);
+					if (progess % 10 == 0)
+					{
+						char temp[16];
+						memset(temp, '=', progess % 10);
+						temp[progess % 10 + 1] = 0;
+						OLED_ShowString(45, 1, temp, 1, 0);
+						snprintf(temp, 15, "%d%%", progess % 10);
+						OLED_ShowString(45, 2, temp, 1, 0);
+
+						DEBUG_LED = !DEBUG_LED;
+					}
+
+					memset(rData, 0xFF, sizeof(rData));
+					for (i = 0; i < datalen; i++)
+						rData[i] = head_data[i];
+
+					addr += 1024;
+				}
+			}
+		}
+	}
+	f_close(&fnew);
+	if (target_flash_program_page(0x08000000 + addr, (u8 *)&rData[0], 1024) != ERROR_SUCCESS)
+		return 0;
+	if (!swd_init_debug())
+	{
+		return 0;
+	}
+	DEBUG_LED = 1;
+	swd_set_target_reset(0); //å¤ä½è¿è¡Œ
+	delay_ms(100);
+	OLED_ShowString(45, 1, (u8 *)"==========", 1, 0);
+	OLED_ShowString(45, 2, (u8 *)"DONE", 1, 0);
+	return 1;
 }
-/***********************°´¼ü¼à²â************************/
+/***********************æŒ‰é”®ç›‘æµ‹************************/
 u8 Scan_Key(){
 	if(!SELECT){
 		delay_ms(35);
